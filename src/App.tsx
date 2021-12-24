@@ -1,24 +1,43 @@
-import { VFC } from 'react';
-import logo from './logo.svg';
+import { useEffect, VFC } from 'react';
+import h337 from 'heatmap.js';
+
 import './App.css';
 
-const App: VFC = () => (
-  <div className="App">
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>
-        Edit <code>src/App.tsx</code> and save to reload.
-      </p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-    </header>
-  </div>
-);
+const App: VFC = () => {
+  useEffect(() => {
+    const config = {
+      container: document.querySelector('.App') as HTMLElement,
+      radius: 100,
+      maxOpacity: 0.5,
+      minOpacity: 0,
+      blur: 0.75,
+    };
+
+    const heatmapInstance = h337.create(config);
+    const max = 100;
+    const min = 0;
+    const width = 840;
+    const height = 400;
+
+    const points = [
+      {
+        x: 0.2 * width,
+        y: 0.2 * height,
+        value: 100,
+      },
+      {
+        x: 0.8 * width,
+        y: 0.4 * height,
+        value: Math.floor(Math.random() * 100),
+      },
+    ];
+
+    heatmapInstance.addData(points);
+    heatmapInstance.setDataMax(max);
+    heatmapInstance.setDataMin(min);
+  });
+
+  return <div className="App" />;
+};
 
 export default App;
