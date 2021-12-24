@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@monsonjeremy/react-leaflet": "^3.2.2",
+    "@monsonjeremy/react-leaflet-core": "^1.1.1",
+    "@react-leaflet/core": "npm:@monsonjeremy/react-leaflet-core",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -10,8 +13,11 @@
     "@types/node": "^16.7.10",
     "@types/react": "^17.0.19",
     "@types/react-dom": "^17.0.9",
+    "heatmap.js": "^2.0.5",
+    "leaflet": "^1.7.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-leaflet": "npm:@monsonjeremy/react-leaflet",
     "react-scripts": "4.0.3",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
@@ -52,7 +58,10 @@
     ]
   },
   "devDependencies": {
+    "@types/heatmap.js": "^2.0.37",
+    "@types/leaflet": "^1.7.7",
     "@types/prettier": "^2.3.2",
+    "@types/react-leaflet": "^2.8.2",
     "@types/stylelint": "^13.13.2",
     "@types/testing-library__jest-dom": "^5.14.1",
     "@types/testing-library__user-event": "^4.2.0",
@@ -65,6 +74,7 @@
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-react": "^7.25.1",
     "eslint-plugin-react-hooks": "4.2.0",
+    "husky": "^7.0.4",
     "lint-staged": "^11.1.2",
     "prettier": "^2.3.2",
     "simple-git-hooks": "^2.6.1",
@@ -73,10 +83,6 @@
     "stylelint-config-standard": "^22.0.0",
     "stylelint-order": "^4.1.0",
     "typesync": "^0.8.0"
-  },
-  "simple-git-hooks": {
-    "pre-commit": ". ./lint-staged-around",
-    "pre-push": ". ./test-around"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
@@ -89,5 +95,10 @@
     "{public,src}/**/*.{html,gql,graphql,json}": [
       "prettier --write --loglevel=error"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
