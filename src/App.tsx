@@ -1,5 +1,6 @@
 import { useEffect, VFC } from 'react';
 import h337 from 'heatmap.js';
+import SoedaMap from './img/soedamap.png';
 
 import './App.css';
 
@@ -37,7 +38,13 @@ const App: VFC = () => {
     heatmapInstance.setDataMin(min);
   });
 
-  return <div className="App" />;
+  return (
+    <div className="App">
+      <div>
+        <img src={SoedaMap} alt="SoedaMapImage" />
+      </div>
+    </div>
+  );
 };
 
 export default App;
